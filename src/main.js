@@ -46,7 +46,6 @@ function calculateBonusByProfit(index, total, seller) {
  * @returns {{revenue, top_products, bonus, name, sales_count, profit, seller_id}[]}
  */
 function analyzeSalesData(data, options) {
-    // ============================================================
     if (
         !data ||
         !Array.isArray(data.sellers) ||
@@ -101,8 +100,6 @@ function analyzeSalesData(data, options) {
         // Увеличиваем количество продаж на 1
         seller.sales_count += 1;
 
-
-        // Проходим по каждому товару в чеке
         for (const item of record.items) {
             const product = productIndex[item.sku];
             const cost = product.purchase_price * item.quantity;
@@ -120,7 +117,6 @@ function analyzeSalesData(data, options) {
             seller.products_sold[item.sku] += item.quantity;
         }
     }
-
     sellerStats.sort((a, b) => b.profit - a.profit);
 
     sellerStats.forEach((seller, index) => {
