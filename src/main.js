@@ -45,25 +45,22 @@ function calculateBonuses(sellers, bonusStrategy) {
 
 
 function calculateBonusByProfit(index, total, seller) {
-const { profit } = seller;
+  const { profit } = seller;
 
-// 1 место (индекс 0) → 15%
-if (index === 0) {
-    return 15;
+  let bonusPercent = 0;
+
+  if (index === 0) {
+    bonusPercent = 15;
+  } else if (index === 1 || index === 2) {
+    bonusPercent = 10;
+  } else if (index === total - 1) {
+    bonusPercent = 0;
+  } else {
+    bonusPercent = 5;
+  }
+
+  return profit * (bonusPercent / 100);
 }
-
-// 2 и 3 место (индексы 1 и 2) → 10%
-if (index === 1 || index === 2) {
-    return 10;
-}
-
-// Последнее место (индекс total - 1) → 0%
-if (index === total - 1) {
-    return 0;
-}
-
-// Все остальные → 5%
-return 5;}
 
 /**
  * Функция для анализа данных продаж
